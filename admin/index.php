@@ -1,5 +1,6 @@
 <?php
-    require "../config.php";
+session_start();
+require "../config.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +15,18 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js">
 
-    <script src="js/lightbox-plus-jquery.min.js"></script>
+    </script>
 
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/lightbox-plus-jquery.min.j
+    s"></script>
+
+
+    <script src="vendor/bootstrap/js/bootstrap
+    .bundle.min.js"></script>
+
 
     <script type="text/javascript" src="vendor/summernote/summernote.min.js"></script>
     <script type="text/javascript" src="vendor/summernote/summernote-bs4.min.js"></script>
@@ -58,9 +66,32 @@
 
 <body id="page-top">
     <?php
-    require "funcoes.php";
+    require "funcoes.php"; // aqui esta chamando o arquivo funções.PHP
 
-    require "paginas/login.php";
+    if (!isset($_SESSION["usuario"])) {
+        require "paginas/login.php";
+    } else {
+        //    print_r(($_GET));exit;
+
+        if (isset($_GET["param"])) {
+
+            $page = explode("/", $_GET["param"]);
+
+            $pasta = $page[0] ?? NULL;
+            $pagina = $page[1] ?? NULL;
+            $id = $page[2] ?? NULL;
+
+            $page = "{$pasta}/{$pagina}";
+        }
+        require "header.php";
+        if (file_exists("{$page}.php")) {
+            require "{$page}.php";
+        } else {
+            require "paginas/erro.php";
+        }
+        require "footer.php";
+    }
+
     ?>
 </body>
 
