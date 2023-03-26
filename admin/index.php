@@ -68,28 +68,28 @@ require "../config.php";
     <?php
     require "funcoes.php"; // aqui esta chamando o arquivo funções.PHP
 
-    if (!isset($_SESSION["usuario"])) {
-        require "paginas/login.php";
+    if (!isset($_SESSION["usuario"])) { // aqui está verifiicando se o usuário certo está logado atráves da variavel global $_SESSION, se não for o usuário correto voltamos para a pagina de login que está sendo chamada
+        require "paginas/login.php"; 
     } else {
         //    print_r(($_GET));exit;
 
         if (isset($_GET["param"])) {
 
-            $page = explode("/", $_GET["param"]);
+            $page = explode("/", $_GET["param"]); // explode está sendo usado para dividir a URL atráves da variavel global $_GET, que está sendo recebida pela variável $page
 
-            $pasta = $page[0] ?? NULL;
-            $pagina = $page[1] ?? NULL;
-            $id = $page[2] ?? NULL;
+            $pasta = $page[0] ?? NULL;// aqui está sendo dividido uma parte que está na posição 0 para a variável $pasta
+            $pagina = $page[1] ?? NULL;//aqui está sendo dividido uma parte que está na posição 2 para a variável $pagina
+            $id = $page[2] ?? NULL;// aqui está sendo dividido uma parte que está na posição 0 para a variável $id
 
-            $page = "{$pasta}/{$pagina}";
+            $page = "{$pasta}/{$pagina}"; //aqui esta juntando todo em na variavel $page
         }
-        require "header.php";
-        if (file_exists("{$page}.php")) {
-            require "{$page}.php";
+        require "header.php";//aqui está sendo chamado o arquivo em que está o header
+        if (file_exists("{$page}.php")) {//aqui esta verifical se o arquivo existe atráves da variavel $page, que pega o valor da URL se existir vai para a pagina do arquivo. EX: home.php
+            require "{$page}.php"; //aqui está chamano o arquivo que foi chamado pela variavel $page
         } else {
-            require "paginas/erro.php";
+            require "paginas/erro.php"; //se não existir o arquivo, entõ é chamado a pagina de erro.php
         }
-        require "footer.php";
+        require "footer.php";//aqui está chamando o footer que está no arquivo footer.php
     }
 
     ?>
