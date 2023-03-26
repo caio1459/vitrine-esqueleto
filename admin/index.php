@@ -68,28 +68,28 @@ require "../config.php";
     <?php
     require "funcoes.php"; // aqui esta chamando o arquivo funções.PHP
 
-    if (!isset($_SESSION["usuario"])) { // aqui está verifiicando se o usuário certo está logado atráves da variavel global $_SESSION, se não for o usuário correto voltamos para a pagina de login que está sendo chamada
-        require "paginas/login.php"; 
+    if (!isset($_SESSION["usuario"])) { // aqui está verificando se o usuário certo está logado através da variável global $_SESSION, se não for o usuário correto voltamos para a pagina de login que está sendo chamada
+        require "paginas/login.php";
     } else {
         //    print_r(($_GET));exit;
 
         if (isset($_GET["param"])) {
 
-            $page = explode("/", $_GET["param"]); // explode está sendo usado para dividir a URL atráves da variavel global $_GET, que está sendo recebida pela variável $page
+            $page = explode("/", $_GET["param"]); // explode está sendo usado para dividir a URL através da variável global $_GET, que está sendo recebida pela variável $page
 
-            $pasta = $page[0] ?? NULL;// aqui está sendo dividido uma parte que está na posição 0 para a variável $pasta
-            $pagina = $page[1] ?? NULL;//aqui está sendo dividido uma parte que está na posição 2 para a variável $pagina
-            $id = $page[2] ?? NULL;// aqui está sendo dividido uma parte que está na posição 0 para a variável $id
+            $pasta = $page[0] ?? NULL; // aqui está sendo dividido uma parte que está na posição 0 para a variável $pasta
+            $pagina = $page[1] ?? NULL; //aqui está sendo dividido uma parte que está na posição 2 para a variável $pagina
+            $id = $page[2] ?? NULL; // aqui está sendo dividido uma parte que está na posição 0 para a variável $id
 
-            $page = "{$pasta}/{$pagina}"; //aqui esta juntando todo em na variavel $page
+            $page = "{$pasta}/{$pagina}"; //aqui está juntando todo em na variável $page
         }
-        require "header.php";//aqui está sendo chamado o arquivo em que está o header
-        if (file_exists("{$page}.php")) {//aqui esta verifical se o arquivo existe atráves da variavel $page, que pega o valor da URL se existir vai para a pagina do arquivo. EX: home.php
-            require "{$page}.php"; //aqui está chamano o arquivo que foi chamado pela variavel $page
+        require "header.php"; //aqui está sendo chamado o arquivo em que está o header
+        if (file_exists("{$page}.php")) { //aqui esta verificar se o arquivo existe através da variável $page, que pega o valor da URL se existir vai para a pagina do arquivo. EX: home.php
+            require "{$page}.php"; //aqui está chamando o arquivo que foi chamado pela variável $page
         } else {
-            require "paginas/erro.php"; //se não existir o arquivo, entõ é chamado a pagina de erro.php
+            require "paginas/erro.php"; //se não existir o arquivo, entõ é chamado a página de erro.php
         }
-        require "footer.php";//aqui está chamando o footer que está no arquivo footer.php
+        require "footer.php"; //aqui está chamando o footer que está no arquivo footer.php
     }
 
     ?>
