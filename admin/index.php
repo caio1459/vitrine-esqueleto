@@ -1,6 +1,8 @@
 <?php
+
 session_start();
 require "../config.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -15,18 +17,11 @@ require "../config.php";
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js">
+    <script src="vendor/jquery/jquery.min.js"></script>
 
-    </script>
+    <script src="js/lightbox-plus-jquery.min.js"></script>
 
-
-    <script src="js/lightbox-plus-jquery.min.j
-    s"></script>
-
-
-    <script src="vendor/bootstrap/js/bootstrap
-    .bundle.min.js"></script>
-
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script type="text/javascript" src="vendor/summernote/summernote.min.js"></script>
     <script type="text/javascript" src="vendor/summernote/summernote-bs4.min.js"></script>
@@ -68,10 +63,11 @@ require "../config.php";
     <?php
     require "funcoes.php"; // aqui esta chamando o arquivo funções.PHP
 
+
     if (!isset($_SESSION["usuario"])) { // aqui está verificando se o usuário certo está logado através da variável global $_SESSION, se não for o usuário correto voltamos para a pagina de login que está sendo chamada
-        require "paginas/login.php";
+        require "paginas/login.php";//aqui está chamano a página de login
     } else {
-        //    print_r(($_GET));exit;
+        require "header.php";//aqui está chamano o header
 
         if (isset($_GET["param"])) {
 
@@ -91,7 +87,6 @@ require "../config.php";
         }
         require "footer.php"; //aqui está chamando o footer que está no arquivo footer.php
     }
-
     ?>
 </body>
 
