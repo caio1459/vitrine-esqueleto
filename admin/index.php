@@ -65,9 +65,9 @@ require "../config.php";
 
 
     if (!isset($_SESSION["usuario"])) { // aqui está verificando se o usuário certo está logado através da variável global $_SESSION, se não for o usuário correto voltamos para a pagina de login que está sendo chamada
-        require "paginas/login.php";//aqui está chamano a página de login
+        require "paginas/login.php"; //aqui está chamano a página de login
     } else {
-        require "header.php";//aqui está chamano o header
+        require "header.php"; //aqui está chamano o header
 
         if (isset($_GET["param"])) {
 
@@ -79,13 +79,13 @@ require "../config.php";
 
             $page = "{$pasta}/{$pagina}"; //aqui está juntando todo em na variável $page
         }
-        require "header.php"; //aqui está sendo chamado o arquivo em que está o header
+
         if (file_exists("{$page}.php")) { //aqui esta verificar se o arquivo existe através da variável $page, que pega o valor da URL se existir vai para a pagina do arquivo. EX: home.php
             require "{$page}.php"; //aqui está chamando o arquivo que foi chamado pela variável $page
         } else {
             require "paginas/erro.php"; //se não existir o arquivo, entõ é chamado a página de erro.php
         }
-        require "footer.php"; //aqui está chamando o footer que está no arquivo footer.php
+        require "paginas/footer.php"; //aqui está chamando o footer que está no arquivo footer.php
     }
     ?>
 </body>

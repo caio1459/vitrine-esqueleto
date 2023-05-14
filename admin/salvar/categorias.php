@@ -5,6 +5,7 @@ if ($_POST) {
     $nome = $_POST["nome"] ?? NULL; //pega os dados do formulário através da variável global $_POST e passa para a variável $nome, se não houver dados inseridos a variável $nome fica com valor nulo 
 
     if (empty($nome)) { //validação se o nome foi inserido  através da função empty
+        $sql = "SELECT nome,id FROM categoria WHERE id = :id";
         mensagemErro("Preencha o nome da categoria"); //se não existir é passado uma mensagem de erro
     }
     $sql = "SELECT id FROM categoria WHERE nome = :nome and id <> :id"; //aqui é feito um SELECT que verifica se o nome digitado é igual ao nome do banco de dados, e verifica se o id é diferente. Depois esse SELECT é passado pra variável $sql
@@ -30,7 +31,7 @@ if ($_POST) {
         $consulta->bindParam(":id", $id); //prepara variável $id com o parâmetro ":id" para a consulta SQL.
     }
 
-    if ($consulta->execute()) { //se não foi possível executar a variável consulta
+    if (!$consulta->execute()) { //se não foi possível executar a variável consulta
         mensagemErro("Não foi possível salvar os dados"); //é exibido uma mensagem de erro
     }
 
